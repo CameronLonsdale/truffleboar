@@ -1,5 +1,9 @@
+import re
+
 from .search import find_features
 from .util import load_rules
+
+from .structures import Rules
 
 default_rules = {
     "Slack Token": "(xox[p|b|o|a]-[0-9]{12}-[0-9]{12}-[0-9]{12}-[a-z0-9]{32})",
@@ -19,6 +23,7 @@ default_rules = {
     "Slack Webhook": "https://hooks.slack.com/services/T[a-zA-Z0-9_]{8}/B[a-zA-Z0-9_]{8}/[a-zA-Z0-9_]{24}",
     "Google (GCP) Service-account": "\"type\": \"service_account\"",
     "Twilio API Key": "SK[a-z0-9]{32}",
-    "Password in URL": "//[^/\\s:]+:[^/\\s:]+@"
+    "Password in URL": "\\w+://[^/\\s:]+:[^/\\s:]+@"
 }
 
+default_rules: Rules  = {name: re.compile(regex) for name, regex in default_rules.items()}

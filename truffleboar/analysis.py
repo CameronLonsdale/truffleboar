@@ -1,10 +1,11 @@
 """
-Checks module
+Analysis module
 
-These functions perform the actual check to determine if a feature has been found
+These functions perform the actual analysis to determine if a feature has been found
 """
 
 from truffleboar.structures import Rules, Artifact
+
 from typing import Optional, Iterable
 
 

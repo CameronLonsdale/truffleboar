@@ -2,6 +2,9 @@
 
 import argparse
 import truffleboar
+import truffleboar.analysis
+
+import functools
 
 from typing import Dict, Any, NamedTuple, Iterable, Optional
 
@@ -17,9 +20,13 @@ def main() -> None:
 
     rules = truffleboar.load_rules(args.rules) if args.rules else truffleboar.default_rules
 
+    # The analysis to be performed
+    # TODO: as more analysers are supported, this needs to be customised via command line arg
+    analysers = [functools.partial(truffleboar.analysis.regex_check, patterns=rules)]
+
     features = truffleboar.find_features(
         project_full_name=args.project_full_name,
-        custom_regexes=rules,
+        analysers=analysers,
         branch=args.branch,
         auth_token=args.token
     )

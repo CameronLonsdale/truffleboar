@@ -1,3 +1,4 @@
+"""Structure module"""
 
 from typing import Dict, Any, Iterable, NamedTuple
 

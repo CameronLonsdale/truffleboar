@@ -18,3 +18,8 @@ Because truffleboar is dependent on a GitHub project, it requires the full proje
 virtualenv venv -p python3.6
 source ./venv/bin/activate
 ```
+
+2. Install requirements
+```
+pip install -r requirements.txt
+```
