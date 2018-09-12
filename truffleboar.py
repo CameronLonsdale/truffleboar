@@ -1,11 +1,9 @@
 #!/usr/bin/env python
 
-
 import argparse
 import truffleboar
-from typing import Dict, Any, NamedTuple, Iterable, Optional
 
-DEFAULT_RULES = 'default_rules.json'
+from typing import Dict, Any, NamedTuple, Iterable, Optional
 
 
 def main() -> None:
@@ -17,11 +15,11 @@ def main() -> None:
     parser.add_argument("project_full_name", type=str, help='Full name of project to search for secrets')
     args = parser.parse_args()
 
-    rules_file = args.rules if args.rules else DEFAULT_RULES
+    rules = truffleboar.load_rules(args.rules) if args.rules else truffleboar.default_rules
 
     features = truffleboar.find_features(
         project_full_name=args.project_full_name,
-        custom_regexes=truffleboar.load_rules(rules_file),
+        custom_regexes=rules,
         branch=args.branch,
         auth_token=args.token
     )

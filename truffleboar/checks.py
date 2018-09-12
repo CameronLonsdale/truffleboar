@@ -1,4 +1,5 @@
-"""Checks module
+"""
+Checks module
 
 These functions perform the actual check to determine if a feature has been found
 """
