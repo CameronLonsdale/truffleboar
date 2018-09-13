@@ -22,7 +22,10 @@ def main() -> None:
 
     # The analysis to be performed
     # TODO: as more analysers are supported, this needs to be customised via command line arg
-    analysers = [functools.partial(truffleboar.analysis.regex_check, patterns=rules)]
+    analysers = [
+        functools.partial(truffleboar.analysis.regex_check, patterns=rules),
+        truffleboar.analysis.entropy_check
+    ]
 
     features = truffleboar.find_features(
         project_full_name=args.project_full_name,
